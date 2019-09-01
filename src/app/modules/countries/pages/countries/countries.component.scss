@@ -1,0 +1,62 @@
+.countries-list {
+    margin-top: 50px;
+    padding: 20px;
+
+    div {
+        cursor: default;
+    }
+    a {
+        cursor: pointer;
+    }
+    .countries-header {
+        border-bottom: 1px solid black;
+        padding: 20px;
+
+        div {
+            i {
+                border: solid black;
+                border-width: 0 3px 3px 0;
+                display: inline-block;
+                padding: 3px;
+                margin-right: 3px;
+            }
+            .right {
+                transform: rotate(-45deg);
+                -webkit-transform: rotate(-45deg);
+            }
+            
+            .left {
+                transform: rotate(135deg);
+                -webkit-transform: rotate(135deg);
+            }
+            
+            .up {
+                transform: rotate(-135deg);
+                -webkit-transform: rotate(-135deg);
+            }
+            
+            .down {
+                transform: rotate(45deg);
+                -webkit-transform: rotate(45deg);
+            }
+        }
+    }
+
+    .countries-body {
+        padding: 20px;
+        div:first-child {
+            cursor: pointer;;
+        }
+        
+    }
+}
+
+.modal-body {
+    .border-country {
+        cursor: pointer;
+    }
+    .report-checkbox {
+        margin-top: 10px;
+    }
+}
+  

@@ -1,0 +1,37 @@
+<div class="container countries-list">
+    <ngx-spinner></ngx-spinner>
+    <div class="row countries-header">
+        <div class="col-sm" (click)="sortCountries('name')">
+            <i *ngIf="sortedProperty === 'name'" c
+                lass="arrow" 
+                [ngClass]="{
+                    'up': sortedDesc,
+                    'down': !sortedDesc
+                }"></i> 
+                <span>Name:</span>
+        </div>
+        <div class="col-sm" (click)="sortCountries('population')">
+            <i *ngIf="sortedProperty === 'population'" class="arrow" [ngClass]="{
+                'up': sortedDesc,
+                'down': !sortedDesc
+                }"></i>
+                <span>Number of Inhabitants:</span>
+        </div>
+        <div class="col-sm">
+            <span>Flag:</span>
+        </div>
+    </div>
+    <div *ngFor="let country of countries; let i = index" class="row countries-body">
+            <div class="col-sm" (click)="openCountry(countryDetails, country.name)">
+                {{country.name}}
+            </div>
+            <div class="col-sm">
+            {{country.population | number}}
+            </div>
+            <div class="col-sm">
+                <img width="30" src="{{country.flag}}" alt="">
+            </div>
+    </div>
+    <br/>
+    <br/>
+</div>

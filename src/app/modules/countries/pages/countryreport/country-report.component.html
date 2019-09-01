@@ -1,0 +1,82 @@
+<ng-template #countryReport let-modal ngIf="country">
+        <div class="modal-header">
+            <h4 class="modal-title">{{country.name}}</h4>
+            <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <span>Select the wrong data and provide short description</span>
+                <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Name:</label>
+                    <div class="col-sm-9">
+                        <input type="checkbox" value="name" (click)=addFault($event) class="form-check-input report-checkbox">
+                        <label class="col-sm-12 col-form-label">{{country.name}}</label>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Population:</label>
+                    <div class="col-sm-9">
+                        <input type="checkbox" value="population" (click)=addFault($event) class="form-check-input report-checkbox">
+                        <label class="col-sm-12 col-form-label">{{country.population | number}}</label>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Flag:</label>
+                    <div class="col-sm-9">
+                        <input type="checkbox" value="flag" (click)=addFault($event) class="form-check-input report-checkbox">
+                        <label class="col-sm-12 col-form-label"> <img width="30" src="{{country.flag}}" alt=""></label>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Languages:</label>
+                    <div class="col-sm-9">
+                        <input type="checkbox" value="languages" (click)=addFault($event) class="form-check-input report-checkbox">
+                        <label class="col-sm-12 col-form-label" *ngFor="let language of country.languages">{{language.name}}</label>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Currencies:</label>
+                    <div class="col-sm-9">
+                        <input type="checkbox" value="currencies" (click)=addFault($event) class="form-check-input report-checkbox">
+                        <label class="col-sm-12 col-form-label" *ngFor="let currency of country.currencies">{{currency.name}}</label>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Timezones:</label>
+                    <div class="col-sm-9">
+                        <input type="checkbox" value="timezones" (click)=addFault($event) class="form-check-input report-checkbox">
+                        <label class="col-sm-12 col-form-label" *ngFor="let timezone of country.timezones">{{timezone}}</label>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Bordering countries:</label>
+                    <div class="col-sm-9">
+                        <input type="checkbox" value="border" (click)=addFault($event) class="form-check-input report-checkbox">
+                        <label class="col-sm-12 col-form-label" *ngFor="let border of country.borderCountries ">
+                            {{border}}
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Map:</label>
+                    <div class="col-sm-10">
+                        <input type="checkbox" value="map" (click)=addFault($event) class="form-check-input report-checkbox"><br/>
+                        <div id="map_chart" [chartData]="map_ChartData" [chartOptions]="map_ChartOptions" chartType="GeoChart" GoogleChart></div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Short description:</label>
+                    <div class="col-sm-10">
+                        <textarea [(ngModel)]="shortDescription" class="form-control" rows="3"></textarea>
+                    </div>
+                </div>
+        </div>
+        <div *ngIf="!reportFormValid" class="alert alert-danger" role="alert">
+            Select at least one fault data
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-light" (click)="activeModal.dismiss('Close click')">Close</button>
+            <button type="submit" class="btn btn-primary" (click)="sendReport()">Send</button>
+        </div>
+    </ng-template>

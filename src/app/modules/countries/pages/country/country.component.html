@@ -1,0 +1,45 @@
+    <ng-template #countryDetails let-modal ngIf="country">
+        <div class="modal-header">
+            <h4 class="modal-title">{{country.name}}</h4>
+            <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form>
+                <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Languages:</label>
+                    <div class="col-sm-9">
+                        <label class="col-sm-12 col-form-label" *ngFor="let language of country.languages">{{language.name}}</label>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Currencies:</label>
+                    <div class="col-sm-9">
+                        <label class="col-sm-12 col-form-label" *ngFor="let currency of country.currencies">{{currency.name}}</label>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Timezones:</label>
+                    <div class="col-sm-9">
+                        <label class="col-sm-12 col-form-label" *ngFor="let timezone of country.timezones">{{timezone}}</label>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Bordering countries:</label>
+                    <div class="col-sm-9">
+                        <label class="col-sm-12 col-form-label border-country" (click)="openCountry(border)" *ngFor="let border of country.borderCountries ">
+                            {{border}}
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div id="map_chart" [chartData]="map_ChartData" [chartOptions]="map_ChartOptions" chartType="GeoChart" GoogleChart></div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-light" (click)="activeModal.dismiss('Close click')">Close</button>
+            <button type="button" class="btn btn-danger" (click)="reportData(countryReport)">Report</button>
+        </div>
+    </ng-template>
